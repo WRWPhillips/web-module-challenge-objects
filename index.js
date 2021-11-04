@@ -175,11 +175,18 @@ Use the getReviewsByRating function below to do the following:
   ]
 */
 
- function getReviewByRating(/* code here */) {
-    /* code here */
-  }
-
+ function getReviewByRating(array, ratingProvided) {
+    let ratingList = [];
+    for(let i = 0; i < array.length; i++) {
+	if(array[i].rating === ratingProvided) {
+		ratingList.push(array[i]);
+	} 
+    }
+    return ratingList;
+}
   
+console.log(getReviewByRating(reviews, 4));
+
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪💪   
 Use the getLongReviews function below to do the following:
   1. Receive the array that holds all the reviews
@@ -193,9 +200,23 @@ Use the getLongReviews function below to do the following:
   ]
 */
 
-function getLongReviews(/* code here */) {
-    /* code here */
+function getLongReviews(array) {
+	let longReviewArray = [];
+	for(let i = 0; i < array.length; i++) {
+		let reviewLength = 1;
+		for(let j = 0; j < array[i].feedback.length; j++) {
+			if(array[i].feedback[j] === ' ') {
+				reviewLength++;
+			}
+		}
+		if(reviewLength >= 15){
+			longReviewArray.push(array[i]);
+		}
+	}
+	return longReviewArray;
   }
+
+console.log(getLongReviews(reviews));
   
 
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪💪💪💪💪 
@@ -216,11 +237,19 @@ Use the carMaker function below to do the following:
 */
 
 
-function carMaker(/* code here */) {
-    /* code here */
-    
+function carMaker(odometer) {
+	const newObject = {
+		odometer,
+		drive: function (distance) {
+			this.odometer = this.odometer + distance;
+			return this.odometer;
+		},
+	}
+	return newObject;
 }
 
+let car1 = carMaker(10);
+console.log(car1.drive(100));
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
 function foo(){
